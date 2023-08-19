@@ -29,5 +29,18 @@
                 "QueueName":"data-queue",
                 "MessageRetentionPeriod":"6000"
             }
+        },
+        "helloworld": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Handler": "lambda/helloworld.handler",
+                "Code": {
+                    "S3Bucket": "lambda-functions-mak",
+                    "S3Key": "mycode.zip"
+                },
+                "Runtime": "nodejs18.x",
+                "Timeout": 25
+            }
         }
+    }
 }
