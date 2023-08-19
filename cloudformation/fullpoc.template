@@ -1,0 +1,33 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Resources": {
+        "UserTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions":[
+                    {
+                        "AttributeName":"empid",
+                        "AttributeType":"N"
+                    }
+                ],
+                "KeySchema":[
+                    {
+                        "AttributeName" : "empid",
+                        "KeyType" : "HASH"
+                    }
+                ],
+                "ProvisionedThroughput" : {
+                    "ReadCapacityUnits" : "10",
+                    "WriteCapacityUnits" : "10"
+                },
+                "TableName":"users"
+            }
+        },
+        "DataSQS":{
+            "Type" : "AWS::SQS::Queue",
+            "Properties":{
+                "QueueName":"data-queue",
+                "MessageRetentionPeriod":"6000"
+            }
+        }
+}
